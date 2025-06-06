@@ -13,7 +13,8 @@ router.post(
     [
         body('username', 'Username is required').notEmpty().trim().escape(),
         body('email', 'Please include a valid email').isEmail().normalizeEmail(),
-        body('password', 'Password must be at least 6 characters long').isLength({ min: 8 }),
+        // Enforce the same minimum length as the client-side validation
+        body('password', 'Password must be at least 6 characters long').isLength({ min: 6 }),
     ],
     (req, res) => {
         // Check for validation errors
